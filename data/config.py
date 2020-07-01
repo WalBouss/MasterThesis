@@ -136,6 +136,15 @@ polyp_dataset = dataset_base.copy({
   'class_names': ('polyp'),
   'label_map': { 1:  1 }
 })
+normal_colon_dataset = dataset_base.copy({
+  'name': 'normal_colon_dataset',
+  'train_info': 'normal/',
+  'train_images': 'normal/',
+  'valid_info': 'normal',
+  'valid_images': 'normal/',
+  'class_names': ('polyp'),
+  'label_map': { 1:  1 }
+})
 
 coco2014_dataset = dataset_base.copy({
     'name': 'COCO 2014',
