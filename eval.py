@@ -326,7 +326,8 @@ class Detections:
             'image_id': int(image_id),
             'category_id': get_coco_cat(int(category_id)),
             'segmentation': rle,
-            'score': float(score)
+            'score': float(score),
+            'area': rle['counts'].area()
         })
 
     def dump(self):
