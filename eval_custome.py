@@ -187,15 +187,18 @@ def prep_display(dets_out, img, h, w, undo_transform=True, class_color=False, ma
     # Beware: very fast but possibly unintelligible mask-drawing code ahead
     # I wish I had access to OpenGL or Vulkan but alas, I guess Pytorch tensor operations will have to suffice
     if args.display_masks and cfg.eval_mask_branch and num_dets_to_consider > 0:
-        masks = masks[:num_dets_to_consider, :, :, None]
-        print('maskshape', (masks.shape))
-        for i in range(num_dets_to_consider):
-            msk = masks[i, :, :, None]
-            mask = msk.view(1, 968, 1296, 1)
-            print('newmaskshape', (mask.shape))
-            img_gpu_masked = img_gpu * (mask.sum(dim=0) >= 1).float().expand(-1, -1, 3)
-            img_numpy = (img_gpu_masked * 255).byte().cpu().numpy()
-            cv2.imwrite('mask'+str(i)+'.png', img_numpy)
+      masks = masks[:num_dets_to_consider, :, :, None]
+      print('maskshape', (masks.shape))
+      print("imgshape", (img.shape[0]))
+      print('imageName', img.name)
+      for i in range(num_dets_to_consider):
+        msk = masks[i, :, :, None]
+        mask = msk.view(1, img.shape[0], img.shape[1], 1)
+        print('newmaskshape', (mask.shape))
+        #img_gpu *= (mask.sum(dim=0) >= 1).float().expand(-1, -1, 3).contiguous()
+        img_gpu_masked =  (mask.sum(dim=0) >= 1).float().expand(-1, -1, 3).contiguous()
+        img_numpy = (img_gpu_masked * 255).byte().cpu().numpy()
+        cv2.imwrite('../mask_test__test.png'+str(i)+'.jpg', img_numpy)
 
     if args.display_fps:
             # Draw the box for the fps on the GPU
