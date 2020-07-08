@@ -188,9 +188,10 @@ def prep_display(dets_out, img, h, w, undo_transform=True, class_color=False, ma
     # I wish I had access to OpenGL or Vulkan but alas, I guess Pytorch tensor operations will have to suffice
     if args.display_masks and cfg.eval_mask_branch and num_dets_to_consider > 0:
       masks = masks[:num_dets_to_consider, :, :, None]
-      print('maskshape', (masks.shape))
-      print("imgshape", (img.shape[0]))
-      print('imageName', img.name)
+      #print('maskshape', (masks.shape))
+      #print("imgshape", (img.shape[0]))
+      #print('imageName', img.name)
+      #print("Current dir ", os.getcwd())
       for i in range(num_dets_to_consider):
         msk = masks[i, :, :, None]
         mask = msk.view(1, img.shape[0], img.shape[1], 1)
@@ -198,7 +199,7 @@ def prep_display(dets_out, img, h, w, undo_transform=True, class_color=False, ma
         #img_gpu *= (mask.sum(dim=0) >= 1).float().expand(-1, -1, 3).contiguous()
         img_gpu_masked =  (mask.sum(dim=0) >= 1).float().expand(-1, -1, 3).contiguous()
         img_numpy = (img_gpu_masked * 255).byte().cpu().numpy()
-        cv2.imwrite('../mask_test__test.png'+str(i)+'.jpg', img_numpy)
+        cv2.imwrite(str(i)+'.png', img_numpy)
 
     if args.display_fps:
             # Draw the box for the fps on the GPU
@@ -615,10 +616,17 @@ def evalimages(net:Yolact, input_folder:str, output_folder:str):
     for p in Path(input_folder).glob('*'):
         path = str(p)
         name = os.path.basename(path)
+        dir_name = os.path.join("threshold", '.'.join(name.split('.')[:-1]))
+        os.mkdir(dir_name)
+        os.chdir(dir_name)
+        #os.mkdir(name)
+        #os.chdir(name)
         name = '.'.join(name.split('.')[:-1]) + '.png'
         out_path = os.path.join(output_folder, name)
 
-        evalimage(net, path, out_path)
+
+        evalimage(net, os.path.join("../..",path),os.path.join("../..", out_path))
+        os.chdir("../..")
         print(path + ' -> ' + out_path)
     print('Done.')
 
