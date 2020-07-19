@@ -523,10 +523,6 @@ class APDataObject:
     def is_empty(self) -> bool:
         return len(self.data_points) == 0 and self.num_gt_positives == 0
 
-    def get_auc(self) -> float:
-        self.num_positives
-        return
-
     def get_ap(self) -> float:
         """ Warning: result not cached. """
 
@@ -538,7 +534,6 @@ class APDataObject:
 
         precisions = []
         recalls    = []
-        specificities = []
         num_true  = 0
         num_false = 0
 

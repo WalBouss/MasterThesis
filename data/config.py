@@ -136,6 +136,23 @@ polyp_dataset = dataset_base.copy({
   'class_names': ('polyp'),
   'label_map': { 1:  1 }
 })
+polyp_train_dataset = dataset_base.copy({
+  'name': 'polyp_train_dataset',
+  'train_info': 'polyp_train/train/coco_annotations_train.json',
+  'train_images': 'polyp_train/train/images/',
+  'valid_info': 'polyp_train/val/coco_annotations_val.json',
+  'valid_images': 'polyp_train/val/images/',
+  'class_names': ('polyp'),
+  'label_map': { 1:  1 }
+})
+polyp_test_dataset = dataset_base.copy({
+  'name': 'polyp_test_dataset',
+  'valid_info': 'test/coco_annotations_test.json',
+  'valid_images': 'test/images/',
+  'class_names': ('polyp'),
+  'label_map': { 1:  1 }
+})
+
 normal_colon_dataset = dataset_base.copy({
   'name': 'normal_colon_dataset',
   'train_info': 'normal/',
@@ -793,6 +810,37 @@ yolact_resnet50_polyp_config = yolact_resnet50_config.copy({
 
     # Image Size
     'max_size': 512,
+})
+# =========== Config Tests =========== #
+# ResNet-50 550
+yolact_resnet50_550_polyp_config = yolact_resnet50_config.copy({
+    'name': 'yolact_resnet50_550_polyp',
+    # Dataset stuff
+    'dataset': polyp_train,
+    'num_classes': len(polyp_train.class_names) + 1,
+
+    # Image Size
+    'max_size': 550,
+})
+# ResNet-101 550
+yolact_resnet101_550_polyp_config = yolact_base_config.copy({
+    'name': 'yolact_resnet101_550_polyp',
+    # Dataset stuff
+    'dataset': polyp_train,
+    'num_classes': len(polyp_train.class_names) + 1,
+
+    # Image Size
+    'max_size': 550,
+})
+# Darknet53 550
+yolact_darknet53_550_polyp_config = yolact_darknet53_config.copy({
+    'name': 'yolact_darknet53_550_polyp',
+    # Dataset stuff
+    'dataset': polyp_train,
+    'num_classes': len(polyp_train.class_names) + 1,
+
+    # Image Size
+    'max_size': 550,
 })
 
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
