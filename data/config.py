@@ -816,8 +816,8 @@ yolact_resnet50_polyp_config = yolact_resnet50_config.copy({
 yolact_resnet50_550_polyp_config = yolact_resnet50_config.copy({
     'name': 'yolact_resnet50_550_polyp',
     # Dataset stuff
-    'dataset': polyp_train,
-    'num_classes': len(polyp_train.class_names) + 1,
+    'dataset': polyp_train_dataset,
+    'num_classes': len(polyp_train_dataset.class_names) + 1,
 
     # Image Size
     'max_size': 550,
@@ -826,8 +826,8 @@ yolact_resnet50_550_polyp_config = yolact_resnet50_config.copy({
 yolact_resnet101_550_polyp_config = yolact_base_config.copy({
     'name': 'yolact_resnet101_550_polyp',
     # Dataset stuff
-    'dataset': polyp_train,
-    'num_classes': len(polyp_train.class_names) + 1,
+    'dataset': polyp_train_dataset,
+    'num_classes': len(polyp_train_dataset.class_names) + 1,
 
     # Image Size
     'max_size': 550,
@@ -836,8 +836,8 @@ yolact_resnet101_550_polyp_config = yolact_base_config.copy({
 yolact_darknet53_550_polyp_config = yolact_darknet53_config.copy({
     'name': 'yolact_darknet53_550_polyp',
     # Dataset stuff
-    'dataset': polyp_train,
-    'num_classes': len(polyp_train.class_names) + 1,
+    'dataset': polyp_train_dataset,
+    'num_classes': len(polyp_train_dataset.class_names) + 1,
 
     # Image Size
     'max_size': 550,
