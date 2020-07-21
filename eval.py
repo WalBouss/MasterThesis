@@ -553,8 +553,7 @@ class APDataObject:
 
             precision = num_true / (num_true + num_false)
             recall    = num_true / self.num_gt_positives
-            print("num_true = ",num_true)
-            print("num_false = ",num_false)
+
 
             precisions.append(precision)
             recalls.append(recall)
