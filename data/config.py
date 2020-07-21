@@ -881,6 +881,21 @@ yolact_plus_resnet50_config = yolact_plus_base_config.copy({
     }),
 })
 
+# =========== Config Tests =========== #
+# ResNet-50 550
+yolact_plus_resnet50_550_polyp_config = yolact_plus_resnet50_config.copy({
+    'name': 'yolact_plus_resnet50_550_polyp',
+    # Dataset stuff
+    'dataset': polyp_train_dataset,
+    'num_classes': len(polyp_train_dataset.class_names) + 1,
+})
+
+yolact_plus_resnet101_550_polyp_config = yolact_plus_base_config.copy({
+    'name': 'yolact_plus_resnet101_550_polyp',
+    # Dataset stuff
+    'dataset': polyp_train_dataset,
+    'num_classes': len(polyp_train_dataset.class_names) + 1,
+})
 
 # Default config
 cfg = yolact_base_config.copy()
