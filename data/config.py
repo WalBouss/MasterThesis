@@ -877,6 +877,41 @@ yolact_darknet53_700_polyp_config = yolact_darknet53_550_polyp_config.copy({
         'pred_scales': [[int(x[0] / yolact_darknet53_550_polyp_config.max_size * 700)] for x in yolact_darknet53_550_polyp_config.backbone.pred_scales],
     }),
 })
+
+# =========== Config img 400 =========== #
+
+# ResNet50
+yolact_resnet50_400_polyp_config = yolact_resnet50_550_polyp_config.copy({
+    'name': 'yolact_resnet50_400_polyp',
+
+    #'masks_to_train': 300,
+    'max_size': 400,
+    'backbone': yolact_resnet50_550_polyp_config.backbone.copy({
+        'pred_scales': [[int(x[0] / yolact_resnet50_550_polyp_config.max_size * 400)] for x in yolact_resnet50_550_polyp_config.backbone.pred_scales],
+    }),
+})
+
+# ResNet101
+yolact_resnet101_400_polyp_config = yolact_resnet101_550_polyp_config.copy({
+    'name': 'yolact_resnet101_400_polyp',
+
+    #'masks_to_train': 300,
+    'max_size': 400,
+    'backbone': yolact_resnet101_550_polyp_config.backbone.copy({
+        'pred_scales': [[int(x[0] / yolact_resnet101_550_polyp_config.max_size * 400)] for x in yolact_resnet101_550_polyp_config.backbone.pred_scales],
+    }),
+})
+
+# DarkNet53
+yolact_darknet53_400_polyp_config = yolact_darknet53_550_polyp_config.copy({
+    'name': 'yolact_darknet53_400_polyp',
+
+    #'masks_to_train': 300,
+    'max_size': 400,
+    'backbone': yolact_darknet53_550_polyp_config.backbone.copy({
+        'pred_scales': [[int(x[0] / yolact_darknet53_550_polyp_config.max_size * 400)] for x in yolact_darknet53_550_polyp_config.backbone.pred_scales],
+    }),
+})
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
 
 yolact_plus_base_config = yolact_base_config.copy({
